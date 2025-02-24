@@ -1,30 +1,26 @@
-def get_num_words(args):
-    count=len(split(args))
-    return count
+def get_num_words(text):
+    words = text.split()
+    return len(words)
 
-def split(args):
-    words = args.split()
-    return words
 
-def words(args):
-    wordlist = args.lower()
-    charlist = {}
-    for char in wordlist:
-        if char.isalpha():    
-            if char not in charlist:
-                charlist[char] = 1
-            else:
-                charlist[char] += 1
-    #print(charlist)
-    return charlist
+def get_chars_dict(text):
+    chars = {}
+    for c in text:
+        lowered = c.lower()
+        if lowered in chars:
+            chars[lowered] += 1
+        else:
+            chars[lowered] = 1
+    return chars
 
-def sortedwords(args):
-    startlist = words(args)
-    sortedlist = [{'char':k, 'num':v} for k, v in startlist.items()]
 
-    sortedlist.sort(reverse=True, key=sort_on)
+def sort_on(d):
+    return d["num"]
 
-    return sortedlist
 
-def sort_on(dict):
-    return dict["num"]   
+def chars_dict_to_sorted_list(num_chars_dict):
+    sorted_list = []
+    for ch in num_chars_dict:
+        sorted_list.append({"char": ch, "num": num_chars_dict[ch]})
+    sorted_list.sort(reverse=True, key=sort_on)
+    return sorted_list
