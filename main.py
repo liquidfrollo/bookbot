@@ -1,8 +1,10 @@
+from stats import get_num_words
+
 def main(): 
     with open("books/frankenstein.txt") as f:
         file_contents = f.read()
 
-    count=len(split(file_contents))
+    count=get_num_words(file_contents)
     sorted =sortedwords(file_contents)
     #print(words(file_contents))
     print("--- Begin report of books/frankenstein.txt ---")
@@ -11,10 +13,6 @@ def main():
     for letters in sorted:
         print(f"The '{letters['char']}' character was found {letters['num']} times")
     print("--- End report ---")
-
-def split(args):
-    words = args.split()
-    return words
 
 def words(args):
     wordlist = args.lower()
